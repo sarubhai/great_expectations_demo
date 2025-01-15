@@ -51,6 +51,7 @@ action_list:
 ```
 export POSTGRES_CONNECTION_STRING="postgresql+psycopg2://postgres:P%40ssw0rd%21234@localhost:5432/postgres"
 export DATAHUB_DEBUG=true
+export DATAHUB_GMS_ENDPOINT="http://localhost:8080"
 export DATAHUB_ACCESS_TOKEN=None
 ```
 ## Run Great Expectations Checkpoints

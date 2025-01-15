@@ -17,7 +17,7 @@ action_list:
     action:
       module_name: datahub_gx_plugin.action
       class_name: DataHubValidationAction
-      server_url: http://localhost:8080
+      server_url: ${DATAHUB_GMS_ENDPOINT}
       token: ${DATAHUB_ACCESS_TOKEN}
       env: PROD
       exclude_dbname: False
