@@ -1,0 +1,26 @@
+name: gx_checkpoint_trip
+config_version: 1.0
+template_name:
+module_name: great_expectations.checkpoint
+class_name: Checkpoint
+run_name_template: gx-run-trip-%Y%m%d-%H%M%S
+expectation_suite_name:
+batch_request: {}
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction
+evaluation_parameters: {}
+runtime_configuration: {}
+validations:
+  - batch_request:
+      datasource_name: gx_ds_local_fs
+      data_asset_name: gx_asset_csv_trip
+      options:
+        year: '2019'
+        month: '02'
+    expectation_suite_name: gx_expectation_suite_trip
+profilers: []

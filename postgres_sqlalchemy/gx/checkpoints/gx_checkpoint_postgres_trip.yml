@@ -1,0 +1,37 @@
+name: gx_checkpoint_postgres_trip
+config_version: 1.0
+template_name:
+module_name: great_expectations.checkpoint
+class_name: Checkpoint
+run_name_template: gx-run-postgres-trip-%Y%m%d-%H%M%S
+expectation_suite_name:
+batch_request: {}
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction
+  - name: datahub_action
+    action:
+      module_name: datahub_gx_plugin.action
+      class_name: DataHubValidationAction
+      server_url: http://localhost:8080
+      token: ${DATAHUB_ACCESS_TOKEN}
+      env: PROD
+      exclude_dbname: False
+      platform_alias: postgres
+      # platform_instance_map:
+      #   gx_ds_postgres: postgres
+      graceful_exceptions: True
+      parse_table_names_from_sql: True
+      convert_urns_to_lowercase: True
+evaluation_parameters: {}
+runtime_configuration: {}
+validations:
+  - batch_request:
+      datasource_name: gx_ds_postgres
+      data_asset_name: gx_asset_postgres_trip
+    expectation_suite_name: gx_expectation_suite_postgres_trip
+profilers: []
